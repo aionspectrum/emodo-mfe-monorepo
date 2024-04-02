@@ -1,19 +1,13 @@
-import { useState } from 'react';
+import SignIn from './components/SignIn';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const handleSignInSubmit = (username: string, password: string) => {
+    console.log('App Submited: ', { username, password });
+  };
 
   return (
     <>
-      <h1>Vite + React</h1>
-      <div>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
+      <SignIn onSubmit={handleSignInSubmit} />
     </>
   );
 }
