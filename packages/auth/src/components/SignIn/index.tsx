@@ -11,16 +11,12 @@ const Wrapper = styled.div`
   position: relative;
 `;
 
-export interface SignInProps {
-  onSubmit: () => void;
-}
-
 const SignIn: FC<LoginFormProps> = (props) => {
-  const { onSubmit } = props;
+  const { onSubmit, onCancel } = props;
   return (
     <Wrapper>
       <div>Login Form on Sign In page...</div>
-      <LoginForm onSubmit={onSubmit} />
+      <LoginForm onSubmit={onSubmit} onCancel={onCancel} />
     </Wrapper>
   );
 };

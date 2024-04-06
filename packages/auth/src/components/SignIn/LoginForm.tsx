@@ -1,22 +1,25 @@
 import { FC, useState } from 'react';
+import styled from 'styled-components';
 import { Button, Form, Input, Label } from '../UI';
 
+const Inline = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
 export interface LoginFormProps {
-  onSubmit: (username: string, password: string) => void;
+  onSubmit?: (username: string, password: string) => void;
+  onCancel?: () => void;
 }
 
-const LoginForm: FC<LoginFormProps> = ({ onSubmit }) => {
+const LoginForm: FC<LoginFormProps> = ({ onSubmit, onCancel }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  console.log('username:', username);
-  console.log('password:', password);
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('\n');
-    console.log('LoginForm Submitted:', { username, password });
-    onSubmit(username, password);
+    if (onSubmit) onSubmit(username, password);
   };
 
   return (
@@ -39,7 +42,14 @@ const LoginForm: FC<LoginFormProps> = ({ onSubmit }) => {
           onChange={(event) => setPassword(event.target.value)}
         />
       </Label>
-      <Button type="submit">Login</Button>
+      <Inline>
+        <Button emphasis="secondary" type="button" onClick={onCancel}>
+          Cancel
+        </Button>
+        <Button emphasis="primary" type="submit">
+          Login
+        </Button>
+      </Inline>
     </Form>
   );
 };

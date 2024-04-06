@@ -43,4 +43,14 @@ describe('<LoginForm /> component', () => {
     fireEvent.click(screen.getByText('Login'));
     expect(onSubmitMock).toHaveBeenCalledWith('john', 'P@ssw0rd');
   });
+
+  test(`click "Cancel" button to trigger onCancel callback function`, () => {
+    const onSubmitMock = vi.fn();
+    const onCancelMock = vi.fn();
+    render(<LoginForm onSubmit={onSubmitMock} onCancel={onCancelMock} />);
+
+    fireEvent.click(screen.getByText(/Cancel/i));
+    expect(onCancelMock).toHaveBeenCalledTimes(1);
+    expect(onSubmitMock).toHaveBeenCalledTimes(0);
+  });
 });
