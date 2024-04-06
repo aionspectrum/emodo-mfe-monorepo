@@ -21,17 +21,19 @@ const LoginForm: FC<LoginFormProps> = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Username:
+        Username
         <input
           type="text"
+          aria-label="username-input"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
         />
       </label>
       <label>
-        Password:
+        Password
         <input
           type="password"
+          aria-label="password-input"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
