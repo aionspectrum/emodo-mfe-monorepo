@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { Button, Form, Input, Label } from '../UI';
 
 export interface LoginFormProps {
   onSubmit: (username: string, password: string) => void;
@@ -19,27 +20,27 @@ const LoginForm: FC<LoginFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <Form onSubmit={handleSubmit}>
+      <Label>
         Username
-        <input
+        <Input
           type="text"
           aria-label="username-input"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
         />
-      </label>
-      <label>
+      </Label>
+      <Label>
         Password
-        <input
+        <Input
           type="password"
           aria-label="password-input"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
-      </label>
-      <button type="submit">Login</button>
-    </form>
+      </Label>
+      <Button type="submit">Login</Button>
+    </Form>
   );
 };
 
