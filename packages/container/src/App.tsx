@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import SignIn from 'auth/SignIn';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const handleSignInSubmit = (username: string, password: string) => {
+    console.log('containerapp : LoginForm Submited: ', { username, password });
+  };
+
+  const handleSignInCancel = () => {
+    console.log('container app: LoginForm Canceled');
+  };
 
   return (
     <>
       <h1>Container App (host of micro frontends)</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
+      <SignIn onSubmit={handleSignInSubmit} onCancel={handleSignInCancel} />
     </>
   );
 }
