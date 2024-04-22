@@ -1,18 +1,20 @@
-import SignIn from 'auth/SignIn';
+import { lazy } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { AUTH } from './constants/routes';
+
+const HomeLazy = lazy(() => import('./pages/Home'));
+const AuthLazy = lazy(() => import('./pages/Auth'));
 
 function App() {
-  const handleSignInSubmit = (username: string, password: string) => {
-    console.log('containerapp : LoginForm Submited: ', { username, password });
-  };
-
-  const handleSignInCancel = () => {
-    console.log('container app: LoginForm Canceled');
-  };
-
   return (
     <>
       <h1>Container App (host of micro frontends)</h1>
-      <SignIn onSubmit={handleSignInSubmit} onCancel={handleSignInCancel} />
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomeLazy />} />
+          <Route path={`${AUTH}/*`} element={<AuthLazy />} />
+        </Routes>
+      </Router>
     </>
   );
 }
