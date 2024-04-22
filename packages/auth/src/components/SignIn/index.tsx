@@ -1,24 +1,16 @@
 import { FC } from 'react';
-import styled from 'styled-components';
 import LoginForm, { LoginFormProps } from './LoginForm';
-
-const Wrapper = styled.div`
-  display: flex;
-  width: 100vw;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-`;
+import CenterContentWrapper from '../common/CenterContentWrapper';
 
 const SignIn: FC<LoginFormProps> = (props) => {
-  const { onSubmit, onCancel } = props;
   return (
-    <Wrapper>
-      <div>Login Form on Sign In page...</div>
-      <LoginForm onSubmit={onSubmit} onCancel={onCancel} />
-    </Wrapper>
+    <CenterContentWrapper>
+      <h3>Login page</h3>
+      <LoginForm {...props} />
+    </CenterContentWrapper>
   );
 };
 
+export { type LoginFormProps } from './LoginForm';
+export { type ILoginInput } from './LoginForm';
 export default SignIn;

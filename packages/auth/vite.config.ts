@@ -10,9 +10,9 @@ const viteConfig = defineViteConfig({
       name: 'auth',
       filename: 'remoteEntry.js',
       exposes: {
-        './SignIn': './src/components/SignIn',
+        './Authentication': './src/pages/AuthPage',
       },
-      shared: ['react', 'react-dom', 'styled-components'],
+      shared: ['react', 'react-dom', 'react-router-dom'],
     }),
   ],
   build: {

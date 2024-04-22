@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button, Form, Text } from '../UI';
 import InputField from '../common/InputField';
 
-export const SIGN_UP_BUTTON_NAME = '...Sign Up';
+export const SIGN_IN_BUTTON_NAME = '...Sign In';
 
 const Inline = styled.div`
   width: 100%;
@@ -16,28 +16,31 @@ const Wrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-export interface ILoginInput {
+export interface IRegistrationInput {
   username: string;
   password: string;
+  email: string;
 }
 
-export interface LoginFormProps {
-  onSubmit?: (input: ILoginInput) => void;
+export interface SignUpFormProps {
+  onSubmit?: (input: IRegistrationInput) => void;
   onCancel?: () => void;
-  pathToSignUp: string;
+  pathToLogIn: string;
 }
 
-const LoginForm: FC<LoginFormProps> = ({
+const SignUpForm: FC<SignUpFormProps> = ({
   onSubmit,
   onCancel,
-  pathToSignUp,
+  pathToLogIn,
 }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [email, setEmail] = useState('');
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (onSubmit) onSubmit({ username, password });
+    if (onSubmit) onSubmit({ username, password, email });
   };
 
   return (
@@ -49,16 +52,29 @@ const LoginForm: FC<LoginFormProps> = ({
         onChange={(newUsername) => setUsername(newUsername)}
       />
       <InputField
+        aria-label="email-input"
+        label="e-mail"
+        value={email}
+        onChange={(newEmail) => setEmail(newEmail)}
+      />
+      <InputField
         aria-label="password-input"
         label="Password"
+        type="password"
         value={password}
         onChange={(newPassword) => setPassword(newPassword)}
+      />
+      <InputField
+        aria-label="confirm-password-input"
+        label="Confirm Password"
+        type="password"
+        value={confirmPassword}
+        onChange={(newPassword) => setConfirmPassword(newPassword)}
       />
       <Wrapper>
         <Text color="secondary">
           Not registered yet?
-          {/* <Link to={SIGNUP_PATH}>{SIGN_UP_BUTTON_NAME}</Link> */}
-          <Link to={pathToSignUp}>{SIGN_UP_BUTTON_NAME}</Link>
+          <Link to={pathToLogIn}>{SIGN_IN_BUTTON_NAME}</Link>
         </Text>
       </Wrapper>
       <Inline>
@@ -66,11 +82,11 @@ const LoginForm: FC<LoginFormProps> = ({
           Cancel
         </Button>
         <Button emphasis="primary" type="submit">
-          Login
+          Register
         </Button>
       </Inline>
     </Form>
   );
 };
 
-export default LoginForm;
+export default SignUpForm;
