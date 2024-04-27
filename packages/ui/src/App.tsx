@@ -1,15 +1,17 @@
 import { useState } from 'react';
 
+import { Text, Button } from './components/UI';
+
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <h1>UI Components</h1>
+      <Text>UI Components</Text>
       <div>
-        <button onClick={() => setCount((count) => count + 1)}>
+        <Button onClick={() => setCount((count) => count + 1)}>
           count is {count}
-        </button>
+        </Button>
       </div>
     </>
   );
