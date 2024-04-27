@@ -54,7 +54,7 @@ const AuthPage: FC<IAuthProps> = ({
             <SignIn
               onSubmit={handleSignInSubmit}
               onCancel={handleCancel}
-              pathToSignUp={authPath + SIGNUP_PATH}
+              pathToSignUp={authPath || '' + SIGNUP_PATH}
             />
           }
         />
@@ -64,7 +64,7 @@ const AuthPage: FC<IAuthProps> = ({
             <SignIn
               onSubmit={handleSignInSubmit}
               onCancel={handleCancel}
-              pathToSignUp={authPath + SIGNUP_PATH}
+              pathToSignUp={authPath || '' + SIGNUP_PATH}
             />
           }
         />
@@ -74,7 +74,7 @@ const AuthPage: FC<IAuthProps> = ({
             <SignUp
               onSubmit={handleRegistrationSubmit}
               onCancel={handleCancel}
-              pathToLogIn={authPath + LOGIN_PATH}
+              pathToLogIn={authPath || '' + LOGIN_PATH}
             />
           }
         />
