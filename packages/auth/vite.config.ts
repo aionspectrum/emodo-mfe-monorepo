@@ -12,6 +12,9 @@ const viteConfig = defineViteConfig({
       exposes: {
         './Authentication': './src/pages/AuthPage',
       },
+      remotes: {
+        ui: 'http://localhost:8008/assets/remoteEntry.js',
+      },
       shared: ['react', 'react-dom', 'react-router-dom'],
     }),
   ],

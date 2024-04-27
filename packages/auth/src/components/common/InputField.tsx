@@ -1,6 +1,7 @@
 import { FC, ChangeEvent } from 'react';
 import styled from 'styled-components';
 import { Input, Label } from '../UI';
+// import { Input, Label } from 'ui/UI';
 
 const LabelWrapper = styled.div`
   margin-bottom: 10px;
