@@ -1,8 +1,7 @@
 import { FC, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Button, Form, Text } from '../UI';
-import InputField from '../common/InputField';
+import { Button, Form, InputField, Text } from 'ui/UI';
 
 export const SIGN_UP_BUTTON_NAME = '...Sign Up';
 
@@ -46,13 +45,13 @@ const LoginForm: FC<LoginFormProps> = ({
         aria-label="username-input"
         label="Username"
         value={username}
-        onChange={(newUsername) => setUsername(newUsername)}
+        onChange={(newUsername: string) => setUsername(newUsername)}
       />
       <InputField
         aria-label="password-input"
         label="Password"
         value={password}
-        onChange={(newPassword) => setPassword(newPassword)}
+        onChange={(newPassword: string) => setPassword(newPassword)}
       />
       <Wrapper>
         <Text color="secondary">

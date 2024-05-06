@@ -1,8 +1,7 @@
 import { FC, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Button, Form, Text } from '../UI';
-import InputField from '../common/InputField';
+import { Button, Form, InputField, Text } from 'ui/UI';
 
 export const SIGN_IN_BUTTON_NAME = '...Sign In';
 
@@ -49,27 +48,27 @@ const SignUpForm: FC<SignUpFormProps> = ({
         aria-label="username-input"
         label="Username"
         value={username}
-        onChange={(newUsername) => setUsername(newUsername)}
+        onChange={(newUsername: string) => setUsername(newUsername)}
       />
       <InputField
         aria-label="email-input"
         label="e-mail"
         value={email}
-        onChange={(newEmail) => setEmail(newEmail)}
+        onChange={(newEmail: string) => setEmail(newEmail)}
       />
       <InputField
         aria-label="password-input"
         label="Password"
         type="password"
         value={password}
-        onChange={(newPassword) => setPassword(newPassword)}
+        onChange={(newPassword: string) => setPassword(newPassword)}
       />
       <InputField
         aria-label="confirm-password-input"
         label="Confirm Password"
         type="password"
         value={confirmPassword}
-        onChange={(newPassword) => setConfirmPassword(newPassword)}
+        onChange={(newPassword: string) => setConfirmPassword(newPassword)}
       />
       <Wrapper>
         <Text color="secondary">
