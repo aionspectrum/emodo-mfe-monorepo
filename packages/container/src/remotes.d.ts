@@ -1,3 +1,4 @@
+declare module 'ui/*';
 declare module 'auth/*';
 
 // declare module 'auth/Authentication';

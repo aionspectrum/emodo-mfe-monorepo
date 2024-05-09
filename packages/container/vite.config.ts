@@ -9,6 +9,7 @@ export default defineConfig({
       name: 'container',
       remotes: {
         auth: 'http://localhost:8081/assets/remoteEntry.js',
+        ui: 'http://localhost:8008/assets/remoteEntry.js',
       },
       shared: ['react', 'react-dom', 'react-router-dom'],
     }),
