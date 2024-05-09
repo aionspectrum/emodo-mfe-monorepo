@@ -15,7 +15,7 @@ const viteConfig = defineViteConfig({
       remotes: {
         ui: 'http://localhost:8008/assets/remoteEntry.js',
       },
-      shared: ['react', 'react-dom', 'react-router-dom'],
+      shared: ['react', 'react-dom', 'react-router-dom', 'styled-components'],
     }),
   ],
   build: {

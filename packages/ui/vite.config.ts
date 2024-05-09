@@ -12,7 +12,7 @@ const viteConfig = defineViteConfig({
       exposes: {
         './UI': './src/components/UI',
       },
-      shared: ['react'],
+      shared: ['react', 'styled-components'],
     }),
   ],
   build: {
