@@ -1,0 +1,67 @@
+name: Build and Deploy App to S3 and CloudFront
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-southeast-2
+
+      # build & deploy "auth"
+      - name: (auth) Install dependencies
+        run: cd packages/auth/ && yarn install --frozen-lockfile
+
+      - name: (auth) Build
+        run: cd packages/auth/ && yarn build
+
+      - name: (auth) Deploy to S3
+        run: cd packages/auth/ && aws s3 sync dist/ s3://emodo-mfe-test/auth
+
+      # build & deploy "ui"
+      - name: (ui) Install dependencies
+        run: cd packages/ui/ && yarn install --frozen-lockfile
+
+      - name: (iu) Build
+        run: cd packages/ui/ && yarn build
+
+      - name: (ui) Deploy to S3
+        run: cd packages/ui/ && aws s3 sync dist/ s3://emodo-mfe-test/ui
+
+      # build & deploy "container"
+      - name: (container) Install dependencies
+        run: cd packages/container/ && yarn install --frozen-lockfile
+
+      - name: (container) Build
+        run: cd packages/container/ && yarn build
+
+      - name: (container) Deploy to S3
+        run: cd packages/container/ && aws s3 sync dist/ s3://emodo-mfe-test
+
+    #   - name: Invalidate CloudFront Cache
+    #     run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
